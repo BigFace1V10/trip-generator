@@ -33,10 +33,11 @@ module.exports = async function (context, req) {
     console.log(category);
 
     // build the find-places url and nearby-search url with place and category headers
-    const find_url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${place}&inputtype=textquery&fields=name%2Crating%2Cgeometry&key=AIzaSyBBTbUQYs0uGEzLxVh8v8k0p4SOenbe5Cw`
+    const find_url = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${place}&inputtype=textquery&fields=name%2Crating%2Cgeometry&key=${process.env.GOOGLE_PLACES_API_KEY}`
     
-    let nearby_url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&keyword=museum&key=AIzaSyBBTbUQYs0uGEzLxVh8v8k0p4SOenbe5Cw"
-    // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&keyword=${category}&key=AIzaSyBBTbUQYs0uGEzLxVh8v8k0p4SOenbe5Cw`    
+    let nearby_url = 
+    // orlando (cat: stadium) works with this one!
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&type=${category}&key=${process.env.GOOGLE_PLACES_API_KEY}`    
 
     let response, data, sortedData, attractionArr;
     try{
@@ -67,33 +68,11 @@ module.exports = async function (context, req) {
         sortedData = resultsArr.sort((a, b) => b.rating - a.rating).slice(0, 10);
         // for loops with bad condition can block thread
         // array can do a lot: [].
-        attractionArr = sortedData.sort( () => .5 - Math.random() ).slice(0, quantity);
-        
-        
-        // console.log(sortedData)
-        // // return user-input quantity of attractions into attractionArr
-        // attractionArr = new Array();
-        // // generate a 'quantity' of unique random numbers
-        // var randomArr = randomNums(quantity, sortedData.length);
-        // for (var i = 0; i < quantity; i++) {
-        //     var tempPlace = {};
-        //     tempPlace.name = sortedData[randomArr[i]].name;
-        //     tempPlace.rating = sortedData[randomArr[i]].rating;
-        //     tempPlace.vicinity = sortedData[randomArr[i]].vicinity;
-        //     attractionArr.push(tempPlace);
-        // }        
-
-        
+        attractionArr = sortedData.sort( () => .5 - Math.random() ).slice(0, quantity);    
     } catch(error) {
         console.log(error)
     }
-
-    // console.log(typeof(quantity))
-    // console.log(attractionArr)
-    // console.log(attractionArr.length)
     
-    
-
     context.res = {
         // status: 200, /* Defaults to 200 */
         body: attractionArr
@@ -102,14 +81,14 @@ module.exports = async function (context, req) {
 }
 
 /* return a random int under "limit" (because google places may not return a lot of places) */
-function randomNums(quantity, limit) {
-    console.log(limit)
-    var random = [];
-    while (random.length < quantity) {
-        var r = Math.floor(Math.random() * limit);
-        if (random.indexOf(r) === -1) {
-            random.push(r);
-        }
-    }
-    return random;
-}
+// function randomNums(quantity, limit) {
+//     console.log(limit)
+//     var random = [];
+//     while (random.length < quantity) {
+//         var r = Math.floor(Math.random() * limit);
+//         if (random.indexOf(r) === -1) {
+//             random.push(r);
+//         }
+//     }
+//     return random;
+// }
