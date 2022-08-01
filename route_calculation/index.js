@@ -139,6 +139,89 @@ class TspDynamicProgrammingRecursive
     }
 }
 
-module.exports = async function() {
-    TspDynamicProgrammingRecursive.main([]);
+module.exports = async function(context, req) {
+    // TspDynamicProgrammingRecursive.main([]);
+
+    var latitudes, longitudes;
+    latitudes = req.query['lat[]']
+    longitudes = req.query['lng[]']
+    latitudes = JSON.parse('[' + latitudes + ']')
+    longitudes = JSON.parse('[' + longitudes + ']')
+
+	// there are four nodes in example graph (graph is 1-based)
+	const n = longitudes.length;
+
+	// dist[i][j] represents shortest distance to go from i
+	// to j this matrix can be calculated for any given
+	// graph using all-pair shortest path algorithms
+
+    // initialize the 2D array 
+    var dist = Array(n).fill(-1).map(()=>new Array(n).fill(-1));
+
+    // var dist = [];
+    // for(let i = 0; i < n; i++) {
+    //     dist[i] = [];
+    //     for(let j = 0; j < n; j++) {
+    //         dist[i][j] = -1;
+    //     }
+    // }
+    // // the first row are all zeros
+    // dist[0] = [0, 0, 0, 0, 0];
+
+    console.log(dist)
+    // calculate the distance between each location
+    for (var i = 0; i < n; i++) {
+        dist[i][0] = 0;
+        for (var j = 0; j < n; j++) {
+            if (i == j) {
+                dist[i][j] = 0;
+            }
+            else if (dist[j][i] != -1) {
+                dist[i][j] = dist[j][i];
+            }
+            else {
+                dist[i][j] = getDistance(latitudes[i], longitudes[i], latitudes[j], longitudes[j]);
+            }
+        }
+    }
+    console.log(dist);
+
+    var solver = new TspDynamicProgrammingRecursive(0, dist);
+    // Prints: [0, 3, 2, 4, 1, 5, 0]
+    console.log("Tour: " + solver.getTour());
+    // Print: 42.0
+    console.log("Tour cost: " + solver.getTourCost());
+
+}
+
+
+/*
+    Haversince Formula:
+    Function for calculating two points' distance on Earth surface
+    Edited from: https://www.geeksforgeeks.org/program-distance-two-points-earth/
+*/
+function getDistance(lat1, lng1, lat2, lng2) {
+    // The math module contains a function
+    // named toRadians which converts from
+    // degrees to radians.
+    lat1 = lat1 * Math.PI / 180;
+    lat2 = lat2 * Math.PI / 180;
+    lng1 = lng1 * Math.PI / 180;
+    lng2 = lng2 * Math.PI / 180;
+
+    // Haversine formula
+    let dlng = lng2 - lng1;
+    let dlat = lat2 - lat1;
+    let a = Math.pow(Math.sin(dlat / 2), 2)
+                + Math.cos(lat1) * Math.cos(lat2)
+                * Math.pow(Math.sin(dlng / 2),2);
+            
+    let c = 2 * Math.asin(Math.sqrt(a));
+
+    // Radius of earth in kilometers. Use 3956
+    // for miles
+    let r = 6371;
+
+    // calculate the result
+    return(c * r);
 }
