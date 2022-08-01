@@ -27,12 +27,19 @@ travelForm.addEventListener('submit', async function (event) {
         const data = await resp.json();
         console.log(data)
         outputData(data);
+
         
+        let params = new URLSearchParams();
+        for (var i = 0; i < data.length; i++) {
+            params.append('lat[]', data[i].geometry.location.lat);
+            params.append('lng[]', data[i].geometry.location.lng);
+        }
+        // TODO: call the route_calculation function and change the output into the route!
+
 
     } catch(err) {
         console.log(err);
     }
-
 
 
 })
@@ -43,7 +50,8 @@ function outputData(data) {
     output.innerHTML = ""
     for (var i = 0; i < data.length; i++) {
         var div = document.createElement("div");
-        div.innerHTML = 'Name: ' + data[i].name + '<br>rating: ' + data[i].rating + '<br>Address: ' + data[i].vicinity + '<br><br>';
+        div.innerHTML = 'Name: ' + data[i].name + '<br>rating: ' + data[i].rating + '<br>Address: ' + data[i].vicinity + '<br>location: ' + data[i].geometry.location.lat + ',' + data[i].geometry.location.lng + '<br><br>';
+        console.log(div.innerHTML)
         output.appendChild(div);
     }
 }
