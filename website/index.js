@@ -1,10 +1,17 @@
 const travelForm = document.getElementById('travelForm');
+const output = document.getElementById("output");
 
 travelForm.addEventListener('submit', async function (event) {
     event.preventDefault()
     const location = document.getElementById("location").value
     const category = document.getElementById("category").value
     const quantity = document.getElementById("quantity").value
+
+    var q = parseInt(quantity);
+    if (q <= 0 || q > 5) {
+        output.innerHTML = "Please enter a quantity between 1 and 5"
+        return;
+    }
 
     try {
         const endpoint = "https://noah-serverless-project.azurewebsites.net/api/googleplaces?code=Gx8MkLrov3FC0UoIIdv3zUc_hIB37epvR6zHUzHseGUXAzFutk99JA==";
@@ -33,7 +40,6 @@ travelForm.addEventListener('submit', async function (event) {
 
 // create divs for each place and display with tidiness
 function outputData(data) {
-    const output = document.getElementById("output");
     output.innerHTML = ""
     for (var i = 0; i < data.length; i++) {
         var div = document.createElement("div");
