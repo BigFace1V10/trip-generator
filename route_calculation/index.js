@@ -1,4 +1,11 @@
-class TspDynamicProgrammingRecursive
+/* 
+ * 
+ * The original code (in Java) comes from:
+ * @author Steven & Felix Halim, William Fiset, Micah Stairs
+ * Original repo link: https://github.com/williamfiset/Algorithms/blob/master/src/main/java/com/williamfiset/algorithms/graphtheory/TspDynamicProgrammingRecursive.java#L2
+ */
+
+class RouteGenerator
 {
     #N = 0;
     #START_NODE = 0;
@@ -7,10 +14,7 @@ class TspDynamicProgrammingRecursive
     #minTourCost = Infinity;
     #tour = new Array();
     #ranSolver = false;
-    // constructor(distance)
-    // {
-    //     this.this(0, distance); // ?
-    // }
+
     constructor(startNode, distance)
     {
         this.#distance = distance;
@@ -33,8 +37,7 @@ class TspDynamicProgrammingRecursive
         {
             throw new Error("Matrix too large! A matrix that size for the DP TSP problem with a time complexity ofO(n^2*2^n) requires way too much computation for any modern home computer to handle");
         }
-        // The finished state is when the finished state mask has all bits are set to
-        // one (meaning all the nodes have been visited).
+        // The finished state is when the finished state mask has all bits are set to one (meaning all the nodes have been visited).
         this.#FINISHED_STATE = (1 << this.#N) - 1;
     }
 
@@ -116,31 +119,10 @@ class TspDynamicProgrammingRecursive
         this.#tour.push(this.#START_NODE);
         this.#ranSolver = true;
     }
-    
-    // Example usage:
-    static main(args)
-    {
-        // Create adjacency matrix
-        var n = 6;
-        var distanceMatrix = Array(n).fill(0.0).map(()=>new Array(n).fill(0.0));
-        for ( const  row of distanceMatrix) {row.fill(10000);}
-        distanceMatrix[1][4] = distanceMatrix[4][1] = 2;
-        distanceMatrix[4][2] = distanceMatrix[2][4] = 4;
-        distanceMatrix[2][3] = distanceMatrix[3][2] = 6;
-        distanceMatrix[3][0] = distanceMatrix[0][3] = 8;
-        distanceMatrix[0][5] = distanceMatrix[5][0] = 10;
-        distanceMatrix[5][1] = distanceMatrix[1][5] = 12;
-        // Run the solver
-        var solver = new TspDynamicProgrammingRecursive(0, distanceMatrix);
-        // Prints: [0, 3, 2, 4, 1, 5, 0]
-        console.log("Tour: " + solver.getTour());
-        // Print: 42.0
-        console.log("Tour cost: " + solver.getTourCost());
-    }
 }
 
 module.exports = async function(context, req) {
-    // TspDynamicProgrammingRecursive.main([]);
+    // RouteGenerator.main([]);
 
     var latitudes, longitudes;
     latitudes = req.query['lat[]']
@@ -186,11 +168,18 @@ module.exports = async function(context, req) {
     }
     console.log(dist);
 
-    var solver = new TspDynamicProgrammingRecursive(0, dist);
+    var solver = new RouteGenerator(0, dist);
     // Prints: [0, 3, 2, 4, 1, 5, 0]
-    console.log("Tour: " + solver.getTour());
+    var solution = solver.getTour();
+    console.log(solution);
+    console.log(typeof(solution))
+    // console.log("Tour: " + solver.getTour());
     // Print: 42.0
     console.log("Tour cost: " + solver.getTourCost());
+
+    context.res = {
+        body: solution
+    }
 
 }
 

@@ -66,6 +66,23 @@ module.exports = async function (context, req) {
         .map(({ value }) => value)
         .slice(0, quantity)
 
+    // capitalize the first letter of each word in "place" string
+    const words = place.split(" ");
+    place = words.map((word) => { 
+        return word[0].toUpperCase() + word.substring(1); 
+    }).join(" ");
+
+    // Add the starting location of user into the head of attraction array
+    attractionArr.splice(0, 0, {
+        name: place,
+        geometry: {
+            location: {
+                lat: lat,
+                lng: lng
+            }
+        }
+    })
+    console.log(attractionArr)
     
     context.res = {
         // status: 200, /* Defaults to 200 */
