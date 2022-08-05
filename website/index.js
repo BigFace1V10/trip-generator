@@ -2,6 +2,7 @@ const travelForm = document.getElementById('travelForm');
 const output = document.getElementById("output");
 const route_output = document.getElementById("route_output");
 
+
 travelForm.addEventListener('submit', async function (event) {
     event.preventDefault()
     const location = document.getElementById("location").value
@@ -55,10 +56,36 @@ travelForm.addEventListener('submit', async function (event) {
 function outputData(data) {
     output.innerHTML = ""
     for (var i = 1; i < data.length; i++) {
+        // console.log(data[i])
         var div = document.createElement("div");
-        div.innerHTML = 'Name: ' + data[i].name + '<br>rating: ' + data[i].rating + '<br>Address: ' + data[i].vicinity + '<br>location: ' + data[i].geometry.location.lat + ',' + data[i].geometry.location.lng + '<br><br>';
-        console.log(div.innerHTML)
+        div.innerHTML = 'Name: ' + data[i].name + '<br>rating: ' + data[i].rating + '<br>Address: ' + data[i].vicinity + '<br>location: ' + data[i].geometry.location.lat + ',' + data[i].geometry.location.lng + '<br>';
+
+        div.setAttribute(
+            'style',
+            'padding: 5px; border: 2px solid rgb(0, 166, 255); border-radius: 5px;'
+        )
         output.appendChild(div);
+
+        // append a div with left border (representing a connection line)
+        if (i+1 == data.length) {
+            continue;
+        }
+        var vertical_line = document.createElement("div");
+        vertical_line.setAttribute(
+            'style',
+            'width: 80%; margin-left: 10%; padding: 10%; height: 20px; border-left: 2px dotted rgb(0, 166, 255);'
+        )
+        var a = document.createElement("a");
+        var prompt = document.createTextNode("Take me to the next attraction");
+        a.appendChild(prompt);
+
+        var navi_link = "https://www.google.com/maps/dir/?api=1"
+        navi_link += `&origin=${encodeURIComponent(data[i].name)}&origin_place_id=${data[i].place_id}&destination=${encodeURIComponent(data[i+1].name)}&destination_place_id=${data[i+1].place_id}`
+        console.log(navi_link);
+
+        a.href = navi_link;
+        vertical_line.appendChild(a);
+        output.appendChild(vertical_line);
     }
 }
 

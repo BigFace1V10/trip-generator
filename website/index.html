@@ -29,44 +29,45 @@
     </div><br>
     
     <div id="user-input">
-        
+        <h2> Generate your personal randomized trip here! </h2><br>
         <form id="travelForm">
-            <h2> Generate your personal randomized trip here! </h2><br>
-            Location: <input type="text" id="location" name="place" placeholder="Enter a city or address"/>
-            <br>
-            Category: <select id="category" name="cat">
+            Location <br><input type="text" id="location" name="place" placeholder="Enter a city or address"/><br>
+
+            Category <br><select id="category" name="cat">
                 <option value="famous">Most Famous</option>
                 <option value="cultural">Cultural</option>
                 <option value="natural">Natural</option>
                 <option value="sports">Sports</option>
                 <option value="leisure">Leisure</option>
                 <option value="political">Political</option>
-            </select>
-            <br>
-            Transportation: <select id="transportation" name="trans">
+            </select><br>
+
+            Transportation <br><select id="transportation" name="trans">
                 <option value="driving">Cars</option>
                 <option value="transit">Buses/Metros</option>
                 <option value="walking">Legs</option>
                 <option value="cycling">Bikes</option>
-            </select>
-            <br>
-            Quantity: <input type="text" id="quantity" name="quantity" placeholder="Enter number of places you want to visit"/>
+            </select><br>
+
+            Quantity <br><input type="text" id="quantity" name="quantity" placeholder="Enter number of places you want to visit"/>
             <br><br>
-            <input value="Submit" type="submit" id="button1" />
+            <button id="button1" onclick="showOutput()"> Generate My Trip! </button>
         </form>
         <br/>
+    </div><br>
 
+    <div id="user-output">
+        <h2> Your Trip (with routes) </h2><br>
         <div id="output">
+            
         </div>
-        
-
         <div id="route_output">
-
         </div>
-
     </div>
+    
 
     <script src="index.js" type="text/javascript"></script>
+    <script src="click.js" type="text/javascript"></script>
     <!-- <script async
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
     </script> -->

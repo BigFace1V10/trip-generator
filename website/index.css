@@ -33,22 +33,47 @@ h1, h2{
     font-size: 25px;
     font-weight:bold;
 }
-p {
-    font-size: 25px;
-}
-#user-input {
+#user-input, #user-output{
     color: blue;
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     border: 2px solid rgb(0, 166, 255);
     border-radius: 5px;
     padding: 20px;
     background-color: azure;
 }
-#travelForm {
-    margin: 0 auto
+#user-output {
+    display: none;
 }
-#button1 {
+/* #button1 {
     align-self: center;
+} */
+/* form style */
+input[type=text], select {
+    padding: 10px;
+    margin: 10px 0; /* top/bottom margin=10, left/right margin=0 */
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    width: 90%;
 }
+button {
+    /* remove default behavior */
+    appearance:none;
+    -webkit-appearance:none;
+    /* usual styles */
+    padding:10px;
+    border:none;
+    background-color:#3F51B5;
+    color:#fff;
+    font-weight:600;
+    border-radius:5px;
+    width:100%;
+  
+  }
+  .vl {
+    width: 80%;
+    border-left: 6px solid green;
+    height: 100px;
+  }
 
