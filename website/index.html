@@ -4,13 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Chuuby </title>
+
+    <link rel="stylesheet" type="text/css" href="index.css" >
+    <!-- Hina Mincho font-type -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">    <title> Trip-Generator </title>
 </head>
 <body>
-    <div>
-        <h1 id="h1">🏂 Buddies! Let's Travel 🏂</h1>
+    <div id="header">
+        <h1>🏞️ Trip Generator 🏟️</h1>
+    </div>
+
+    <!-- Possible inputs: slideshow -->
+
+    <div class="slogan-image">
+        <div>
+            <h2 class="slogan" > Too lazy to make a travel plan? </h2>
+            <!-- backup slogan: 
+                - Buddies! Let's Travel
+                - Uncover the beauty that Google may never tell you 
+            -->
+        </div>
+    </div><br>
+    
+    <div id="user-input">
+        
         <form id="travelForm">
-            <h2> Choose Your Tastes </h2>
+            <h2> Generate your personal randomized trip here! </h2><br>
             Location: <input type="text" id="location" name="place" placeholder="Enter a city or address"/>
             <br>
             Category: <select id="category" name="cat">
