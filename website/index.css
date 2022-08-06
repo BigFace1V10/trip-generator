@@ -12,7 +12,7 @@ body {
     background-color: rgba(240,240,229,255);
     text-align: center;
 }
-h1, h2{
+h1, h2, h3{
     text-align: center;
     margin: 0;
 }
@@ -70,10 +70,10 @@ button {
     border-radius:5px;
     width:100%;
   
-  }
-  .vl {
-    width: 80%;
-    border-left: 6px solid green;
-    height: 100px;
-  }
+}
+#footer {
+    padding: 10px;
+    color:blue;
+    border-top: 2px solid rgb(0, 166, 255);
+}
 
