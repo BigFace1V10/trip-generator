@@ -4,48 +4,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Chuuby </title>
+
+    <link rel="stylesheet" type="text/css" href="index.css" >
+    <!-- Hina Mincho font-type -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap" rel="stylesheet">    
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.png">
+    <title> Trip-Generator </title>
+
 </head>
 <body>
-    <div>
-        <h1 id="h1">🏂 Buddies! Let's Travel 🏂</h1>
+    <div id="header">
+        <h1>🏞️ Trip Generator 🏟️</h1>
+    </div>
+
+    <!-- Possible inputs: slideshow -->
+
+    <div class="slogan-image">
+        <div>
+            <h2 class="slogan" > Too lazy to make a travel plan? </h2>
+            <!-- backup slogan: 
+                - Buddies! Let's Travel
+                - Uncover the beauty that Google may never tell you 
+            -->
+        </div>
+    </div><br>
+    
+    <div id="user-input">
+        <h2> Generate your personal randomized trip here! </h2><br>
         <form id="travelForm">
-            <h2> Choose Your Tastes </h2>
-            Location: <input type="text" id="location" name="place" placeholder="Enter a city or address"/>
-            <br>
-            Category: <select id="category" name="cat">
+            Location <br><input type="text" id="location" name="place" placeholder="Enter a city or address"/><br>
+
+            Category <br><select id="category" name="cat">
                 <option value="famous">Most Famous</option>
                 <option value="cultural">Cultural</option>
                 <option value="natural">Natural</option>
                 <option value="sports">Sports</option>
                 <option value="leisure">Leisure</option>
                 <option value="political">Political</option>
-            </select>
-            <br>
-            Transportation: <select id="transportation" name="trans">
+            </select><br>
+
+            Transportation <br><select id="transportation" name="trans">
                 <option value="driving">Cars</option>
                 <option value="transit">Buses/Metros</option>
                 <option value="walking">Legs</option>
                 <option value="cycling">Bikes</option>
-            </select>
-            <br>
-            Quantity: <input type="text" id="quantity" name="quantity" placeholder="Enter number of places you want to visit"/>
+            </select><br>
+
+            Quantity <br><input type="text" id="quantity" name="quantity" placeholder="Enter number of places you want to visit"/>
             <br><br>
-            <input value="Submit" type="submit" id="button1" />
+            <button id="button1" onclick="showOutput()"> Generate My Trip! </button>
         </form>
         <br/>
+    </div><br>
 
+    <div id="user-output">
+        <h2> Your Trip (with routes) </h2><br>
         <div id="output">
+            
         </div>
-        
-
         <div id="route_output">
-
         </div>
+    </div><br>
 
+    <div id="footer">
+        <h3>© 2022 Trip-Generator. All rights reserved.</h3>
     </div>
+    
 
     <script src="index.js" type="text/javascript"></script>
+    <script src="click.js" type="text/javascript"></script>
     <!-- <script async
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
     </script> -->

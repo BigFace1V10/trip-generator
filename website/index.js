@@ -26,8 +26,6 @@ travelForm.addEventListener('submit', async function (event) {
         };
         const resp = await fetch(endpoint, options);
         const data = await resp.json();
-        console.log(data)
-        outputData(data);
 
         // create search parameters for the route_calculation function
         let params = new URLSearchParams();
@@ -35,25 +33,66 @@ travelForm.addEventListener('submit', async function (event) {
             params.append('lat[]', data[i].geometry.location.lat);
             params.append('lng[]', data[i].geometry.location.lng);
         }
-        // TODO: call the route_calculation function and change the output into the route!
+        // call the route_calculation function and output the route!
         const route_url = "https://noah-serverless-project.azurewebsites.net/api/route_calculation?code=O-zgqfoiRssvY8OWPilpA4yHdLFf5fj9YFgP1a7g4Y_SAzFu1Ut6hw==&";
         const route_resp = await fetch(route_url + params);
-        console.log(route_resp);
         const route = await route_resp.json();
-        outputRoute(route, data);
-
+        // outputRoute(route, data);
+        displayTrip(route, data);
 
     } catch(err) {
         console.log(err);
     }
-
-
 })
 
 
-// create divs for each place and display with tidiness
+function displayTrip(route, data) {
+    output.innerHTML = ""
+    for (var i = 0; i < route.length; i++) {
+        var attIndex = route[i];
+        var div = document.createElement("div");
+        div.innerHTML = 'Name: ' + data[attIndex].name + '<br>Rating: ' + data[attIndex].rating + '<br>Address: ' + data[attIndex].vicinity;
+
+        // set the attribute for attraction box
+        div.setAttribute(
+            'style',
+            'padding: 5px; border: 2px solid rgb(0, 166, 255); border-radius: 5px;'
+        )
+        output.appendChild(div);
+
+        // append a div with left border (representing a connection line)
+        if (i+1 == route.length) {
+            continue;
+        }
+        
+        // form a navigation link with prompt
+        var a = document.createElement("a");
+        var prompt = document.createTextNode("Take me to the next attraction");
+        a.appendChild(prompt);
+
+        // form the link to Google Map
+        var navi_link = "https://www.google.com/maps/dir/?api=1"
+        navi_link += `&origin=${encodeURIComponent(data[attIndex].name)}&origin_place_id=${data[attIndex].place_id}&destination=${encodeURIComponent(data[route[i+1]].name)}&destination_place_id=${data[route[i+1]].place_id}`;
+        a.href = navi_link;
+        a.target = "_blank";
+
+        // form a vertical line with the link 
+        var vertical_line = document.createElement("div");
+        vertical_line.setAttribute(
+            'style',
+            'width: 80%; margin-left: 10%; padding: 10%; height: 20px; border-left: 2px dotted rgb(0, 166, 255);'
+        )
+        vertical_line.appendChild(a);
+        output.appendChild(vertical_line);
+    }
+}
+
+/* the following functions are auxiliary functions for development and debug */
+
+// create divs for each attraction and display with tidiness
 function outputData(data) {
     output.innerHTML = ""
+    // the first attraction is the user's input location
     for (var i = 1; i < data.length; i++) {
         var div = document.createElement("div");
         div.innerHTML = 'Name: ' + data[i].name + '<br>rating: ' + data[i].rating + '<br>Address: ' + data[i].vicinity + '<br>location: ' + data[i].geometry.location.lat + ',' + data[i].geometry.location.lng + '<br><br>';
@@ -75,3 +114,4 @@ function outputRoute(route, attractions) {
     console.log(text);
     route_output.appendChild(text);
 }
+
