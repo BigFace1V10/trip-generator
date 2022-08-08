@@ -17,7 +17,7 @@ h1, h2, h3{
     margin: 0;
 }
 .slogan-image {
-    background-image:url(../../images/starview.jpg);
+    background-image:url(images/starview.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 250px;
