@@ -6,8 +6,6 @@ const sports = ['stadium', 'field', 'complex', 'hall of fame', 'park']
 const leisure = ['amusement park', 'market', 'exhibition', 'theatre', 'movie theatre']
 const political = ['city_hall', 'memorial']
 
-
-
 module.exports = async function (context, req) {
 
     var place = req.headers['place']; // location
