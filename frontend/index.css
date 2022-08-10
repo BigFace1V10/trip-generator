@@ -45,6 +45,15 @@ h1, h2, h3{
 #user-output {
     display: none;
 }
+#loading {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+#loading-image {
+    display: none;
+}
 /* #button1 {
     align-self: center;
 } */
