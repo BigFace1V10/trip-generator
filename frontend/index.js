@@ -15,7 +15,7 @@ travelForm.addEventListener('submit', async function (event) {
     }
 
     try {
-        const endpoint = "https://noah-serverless-project.azurewebsites.net/api/googleplaces?code=Gx8MkLrov3FC0UoIIdv3zUc_hIB37epvR6zHUzHseGUXAzFutk99JA==";
+        const endpoint = "/api/googleplaces"
         const options = {
             method: "GET",
             headers: {
@@ -34,7 +34,7 @@ travelForm.addEventListener('submit', async function (event) {
             params.append('lng[]', data[i].geometry.location.lng);
         }
         // call the route_calculation function and output the route!
-        const route_url = "https://noah-serverless-project.azurewebsites.net/api/route_calculation?code=O-zgqfoiRssvY8OWPilpA4yHdLFf5fj9YFgP1a7g4Y_SAzFu1Ut6hw==&";
+        const route_url = "/api/route_calculation?"
         const route_resp = await fetch(route_url + params);
         const route = await route_resp.json();
         // outputRoute(route, data);
