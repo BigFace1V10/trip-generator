@@ -32,35 +32,39 @@
     </div><br>
     
     <div id="user-input">
-        <h2> Generate your personal randomized trip here! </h2><br>
+        <h2> Generate your today's unique trip here! </h2><br>
         <form id="travelForm">
-            Location <br><input type="text" id="location" name="place" placeholder="Enter a city or address"/><br>
+            Location (Enter a city you want to explore or the exact address you are located) <br><input type="text" id="location" name="place" placeholder="Enter a city or address"/><br>
 
-            Category <br><select id="category" name="cat">
+            Category (Choose your favorite tourist attraction type) <br><select id="category" name="cat">
                 <option value="famous">Most Famous</option>
-                <option value="cultural">Cultural</option>
-                <option value="natural">Natural</option>
-                <option value="sports">Sports</option>
-                <option value="leisure">Leisure</option>
-                <option value="political">Political</option>
+                <option value="cultural">Cultural (museum, art gallery, etc.)</option>
+                <option value="natural">Natural (national park, zoo, etc.)</option>
+                <option value="sports">Sports (stadium, field, etc.)</option>
+                <option value="leisure">Leisure (amusement park, theatre, etc.)</option>
+                <option value="political">Political (city hall, memorial, etc.)</option>
             </select><br>
 
-            Transportation <br><select id="transportation" name="trans">
+            Transportation (Choose your transportation method | Suggested: Cars) <br><select id="transportation" name="trans">
                 <option value="driving">Cars</option>
                 <option value="transit">Buses/Metros</option>
                 <option value="walking">Legs</option>
-                <option value="cycling">Bikes</option>
+                <option value="bicycling">Bikes</option>
             </select><br>
 
-            Quantity <br><input type="text" id="quantity" name="quantity" placeholder="Enter number of places you want to visit"/>
+            Quantity (Enter the number of attractions you want to visit today | Limit: 1~5) <br><input type="text" id="quantity" name="quantity" value="2"/>
             <br><br>
-            <button id="button1" onclick="showOutput()"> Generate My Trip! </button>
+            <button id="button1"> Generate My Trip! </button>
         </form>
         <br/>
     </div><br>
 
+    <div id="loading-image">
+        <img id="loading" src="images/loading.gif" alt="Loading" style="width: 64px;height: 64px;">
+    </div>
+
     <div id="user-output">
-        <h2> Your Trip (with routes) </h2><br>
+        <h2> Your Trip (with shortest routes) </h2><br>
         <div id="output">
             
         </div>
@@ -73,8 +77,8 @@
     </div>
     
 
+    <script src="helper.js" type="text/javascript"></script>
     <script src="index.js" type="text/javascript"></script>
-    <script src="click.js" type="text/javascript"></script>
     <!-- <script async
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
     </script> -->

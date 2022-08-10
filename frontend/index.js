@@ -7,12 +7,15 @@ travelForm.addEventListener('submit', async function (event) {
     const location = document.getElementById("location").value
     const category = document.getElementById("category").value
     const quantity = document.getElementById("quantity").value
+    const transportation = document.getElementById("transportation").value
 
+    var check1 = checkLocation(location);
     var q = parseInt(quantity);
-    if (q <= 0 || q > 5) {
-        output.innerHTML = "Please enter a quantity between 1 and 5"
+    var check2 = checkQuantity(q);
+    if (!check1 || !check2) {
         return;
     }
+    showLoading();
 
     try {
         const endpoint = "https://noah-serverless-project.azurewebsites.net/api/googleplaces?code=Gx8MkLrov3FC0UoIIdv3zUc_hIB37epvR6zHUzHseGUXAzFutk99JA==";
@@ -38,7 +41,10 @@ travelForm.addEventListener('submit', async function (event) {
         const route_resp = await fetch(route_url + params);
         const route = await route_resp.json();
         // outputRoute(route, data);
-        displayTrip(route, data);
+        displayTrip(route, data, transportation);
+        // switch display from loading to output
+        hideLoading()
+        showOutput()
 
     } catch(err) {
         console.log(err);
@@ -46,12 +52,17 @@ travelForm.addEventListener('submit', async function (event) {
 })
 
 
-function displayTrip(route, data) {
+function displayTrip(route, data, transportation) {
     output.innerHTML = ""
     for (var i = 0; i < route.length; i++) {
         var attIndex = route[i];
         var div = document.createElement("div");
-        div.innerHTML = 'Name: ' + data[attIndex].name + '<br>Rating: ' + data[attIndex].rating + '<br>Address: ' + data[attIndex].vicinity;
+        if (i == 0 || i == route.length-1) {
+            div.innerHTML = 'Name: ' + data[attIndex].name
+        }
+        else {
+            div.innerHTML = 'Name: ' + data[attIndex].name + '<br>Rating: ' + data[attIndex].rating + '<br>Address: ' + data[attIndex].vicinity;
+        }
 
         // set the attribute for attraction box
         div.setAttribute(
@@ -72,7 +83,7 @@ function displayTrip(route, data) {
 
         // form the link to Google Map
         var navi_link = "https://www.google.com/maps/dir/?api=1"
-        navi_link += `&origin=${encodeURIComponent(data[attIndex].name)}&origin_place_id=${data[attIndex].place_id}&destination=${encodeURIComponent(data[route[i+1]].name)}&destination_place_id=${data[route[i+1]].place_id}`;
+        navi_link += `&origin=${encodeURIComponent(data[attIndex].name)}&origin_place_id=${data[attIndex].place_id}&destination=${encodeURIComponent(data[route[i+1]].name)}&destination_place_id=${data[route[i+1]].place_id}&travelmode=${transportation}`;
         a.href = navi_link;
         a.target = "_blank";
 
@@ -88,6 +99,19 @@ function displayTrip(route, data) {
 }
 
 /* the following functions are auxiliary functions for development and debug */
+
+
+// Why can't this work?
+function switchLoading() {
+    let displayStatus = document.getElementById("loading-image").style.display;
+    console.log(displayStatus)
+    if (displayStatus == "none") {
+        document.getElementById("loading-image").style.display = "block";
+    }
+    else if (displayStatus == "block") {
+        document.getElementById("loading-image").style.display = "none";
+    }
+}
 
 // create divs for each attraction and display with tidiness
 function outputData(data) {

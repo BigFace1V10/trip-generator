@@ -80,7 +80,7 @@ module.exports = async function (context, req) {
             }
         }
     })
-    console.log(attractionArr)
+    // console.log(attractionArr)
     
     context.res = {
         // status: 200, /* Defaults to 200 */
@@ -94,9 +94,11 @@ async function getNearbyAttraction(type, lat, lng) {
 
     let nearby_url;
     if (type == 'tourist_attraction') {
-        nearby_url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&type=${type}&key=${process.env.GOOGLE_PLACES_API_KEY}`
+        // limit the radius to 30000m
+        nearby_url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=20000&type=${type}&key=${process.env.GOOGLE_PLACES_API_KEY}`
     }
     else {
+        // when keyword= is used, radius must be 50000m
         nearby_url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?radius=50000&keyword=${type}&key=${process.env.GOOGLE_PLACES_API_KEY}`    
     }
     nearby_url += `&location=${lat}%2C${lng}`
@@ -112,7 +114,8 @@ async function getNearbyAttraction(type, lat, lng) {
     resultsArr = data.results
     // console.log(resultsArr.length)
     // sort the array by descending order
-    sortedData = resultsArr.sort((a, b) => b.rating - a.rating)//.slice(0, 10);
+    sortedData = resultsArr.sort((a, b) => b.rating - a.rating).filter(attraction => attraction.rating >= 4.0)       //.slice(0, 10);
+    // console.log(sortedData)
     // for loops with bad condition can block thread
     // array can do a lot: [].
     return sortedData;
