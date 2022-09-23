@@ -4,12 +4,12 @@
 A convenient tool to generate your unique and random trip, created with Node.js, Azure Static Web App, and Cosmos DB
 
 ## Table of Contents
-- Product Introduction
-- Technology
-- Development Process
-- How To Use It?
-- Incoming Features
-- Acknowledgement
+- [Product Background](#project-introduction)
+- [App Usage](#app-usage)
+- [Technology](#technology)
+- [Product Modules](#product-modules)
+- [Incoming Features](#incoming-features)
+- [Acknowledgement](#acknoledgement)
 
 ### Project Background
 Let's take a look at these two situations:
@@ -19,7 +19,16 @@ Let's take a look at these two situations:
 
 Does any of these describe you during a trip? In order to help people truly relax and acquire happiness, I started off this ***Trip Generator*** app project during a [Serverless Mentorship Program](https://www.bitproject.org/serverless) hosted by Bit Project. 
 
-### Technologies
+### App Usage
+On the website, you could enter your location, favorite category of tourist attraction, transportation method, and number of places to go. 
+
+After hitting "Generate My Trip!" button, the app will automatically generate a random and unique trip established on your inputs. It is worth mentioning that these trips would automatically plan a shortest route covering all the attractions. When you click on "Take me to the next attraction," a Google Map navigation page would be opened, with the starting point, destination, and transportation already chosen for you.
+
+![Trip Generator Screenshot](https://user-images.githubusercontent.com/60641853/192038820-48bb5f11-e257-4427-bb6b-ccb247f75958.png)
+Isn't that cool? Just go out and have fun without worrying about the plans!
+
+
+### Technology
 - JavaScript
 - Node.js (16.15.0)
 - Azure Serverless Functions
@@ -28,7 +37,22 @@ Does any of these describe you during a trip? In order to help people truly rela
 - HTML & CSS
 - Bootstrap 4
 
-### Development Process
+### Product Modules
+
+- Project Structures
+<img width="75%" alt="Project Structure" src="https://user-images.githubusercontent.com/60641853/192036975-25612012-1948-400f-9cfa-87672155e0ff.png">
+
+- [Google Places API](/api/googleplaces)
+<img width="75%" alt="Google_Places API" src="https://user-images.githubusercontent.com/60641853/192037555-4697a83c-f6ec-4ba9-8922-c243b24c373a.png">
+The Google Places API is built on the basis of Google Map's FindPlace and NearbySearch APIs. It serves the app by generating random tourist attractions based upon user inputs and output to the JS functions.
+
+- [Route Calculations API](/api/route_calculation)
+<img width="75%" alt="Route_Calculation API" src="https://user-images.githubusercontent.com/60641853/192040987-344f312f-6acc-4dd6-bc31-c9da02951bb9.png">
+The Route Calculations API is established upon 
+
+
+
+### Incoming Features
 
 
 ### Acknowledgement
