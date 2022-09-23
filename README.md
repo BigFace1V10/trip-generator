@@ -24,8 +24,9 @@ On the website, you could enter your location, favorite category of tourist attr
 
 After hitting "Generate My Trip!" button, the app will automatically generate a random and unique trip established on your inputs. It is worth mentioning that these trips would automatically plan a shortest route covering all the attractions. When you click on "Take me to the next attraction," a Google Map navigation page would be opened, with the starting point, destination, and transportation already chosen for you.
 
-![Trip Generator Screenshot](https://user-images.githubusercontent.com/60641853/192038820-48bb5f11-e257-4427-bb6b-ccb247f75958.png)
-Isn't that cool? Just go out and have fun without worrying about the plans!
+![Trip Generator Screenshot](https://user-images.githubusercontent.com/60641853/192043304-5f452414-2777-4972-90d5-96bf3b5d4ccb.png)
+
+<br>Isn't that cool? Just go out and have fun without worrying about the plans!
 
 
 ### Technology
@@ -43,12 +44,12 @@ Isn't that cool? Just go out and have fun without worrying about the plans!
 <img width="75%" alt="Project Structure" src="https://user-images.githubusercontent.com/60641853/192036975-25612012-1948-400f-9cfa-87672155e0ff.png">
 
 - [Google Places API](/api/googleplaces)
-The Google Places API is built on the basis of Google Map's FindPlace and NearbySearch APIs. It serves the app by generating random tourist attractions based upon user inputs and output to the JS functions.
+<br>The Google Places API is built on the basis of Google Map's FindPlace and NearbySearch APIs. It serves the app by generating random tourist attractions based upon user inputs and output to the JS functions.
 <img width="75%" alt="Google_Places API" src="https://user-images.githubusercontent.com/60641853/192037555-4697a83c-f6ec-4ba9-8922-c243b24c373a.png">
 
 
 - [Route Calculations API](/api/route_calculation)
-The Route Calculations API is established upon a solution for the famous Travelling Salesman Problem. It serves the app by creating graph of multiple destinations and calculating the shortest route to travel through all of them, which is the final trip plan shown to the users.
+<br>The Route Calculations API is established upon a solution for the famous Travelling Salesman Problem. It serves the app by creating graph of multiple destinations and calculating the shortest route to travel through all of them, which is the final trip plan shown to the users.
 <img width="75%" alt="Route_Calculation API" src="https://user-images.githubusercontent.com/60641853/192040987-344f312f-6acc-4dd6-bc31-c9da02951bb9.png">
 
 
