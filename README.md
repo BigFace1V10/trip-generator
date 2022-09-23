@@ -1,15 +1,15 @@
-# [Trip Generator App](www.thetripgenerator.com)
+# [Trip Generator App](https://www.thetripgenerator.com)
 
-### Too Lazy To Make a Travel Plan? Try The [Trip Generator](www.thetripgenerator.com)!
+### Too Lazy To Make a Travel Plan? Try The [Trip Generator](https://www.thetripgenerator.com)!
 A convenient tool to generate your unique and random trip, created with Node.js, Azure Static Web App, and Cosmos DB
 
 ## Table of Contents
-- [Product Background](#project-introduction)
+- [Product Background](#project-background)
 - [App Usage](#app-usage)
 - [Technology](#technology)
 - [Product Modules](#product-modules)
 - [Incoming Features](#incoming-features)
-- [Acknowledgement](#acknoledgement)
+- [Acknowledgement](#acknowledgement)
 
 ### Project Background
 Let's take a look at these two situations:
