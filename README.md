@@ -1,6 +1,7 @@
 # [Trip Generator App](https://www.thetripgenerator.com)
 
 ### Too Lazy To Make a Travel Plan? Try The [Trip Generator](https://www.thetripgenerator.com)!
+https://www.thetripgenerator.com <br>
 A convenient tool to generate your unique and random trip, created with Node.js, Azure Static Web App, and Cosmos DB
 
 ## Table of Contents
