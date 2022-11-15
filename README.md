@@ -1,7 +1,8 @@
 # [Trip Generator App](https://www.thetripgenerator.com)
 
 ### Too Lazy To Make a Travel Plan? Try The [Trip Generator](https://www.thetripgenerator.com)!
-A convenient tool to generate your unique and random trip, created with Node.js, Azure Static Web App, and Cosmos DB
+https://www.thetripgenerator.com <br>
+A convenient tool to generate your unique and random trip, created with Node.js, ReactJS, Azure Static Web App, and Cosmos DB
 
 ## Table of Contents
 - [Product Background](#project-background)
@@ -32,6 +33,7 @@ After hitting "Generate My Trip!" button, the app will automatically generate a 
 ### Technology
 - JavaScript
 - Node.js (16.15.0)
+- ReactJS
 - Azure Serverless Functions
 - Azure Cosmos DB
 - Azure Blob Storage
